@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import HomeView from './views/HomeView.vue'
 </script>
 
 <template>
-<h1 class="text-blue-600 text-5xl bg-blue-200 text-center">Hello world</h1>
+  <nav class="bg-blue-500 p-4">
+    <RouterLink to="/" class="text-white">Home</RouterLink>
+    <RouterLink to="/about" class="text-white ml-4">About</RouterLink>
+    <RouterLink to="/users" class="text-white ml-4">Users</RouterLink>
+  </nav>
   <RouterView />
 </template>
 
