@@ -13,9 +13,8 @@ const users = [
   { id: 10, name: 'Hank' },
 ]
 const route = useRoute()
-console.log(route.params?.id)
 </script>
 
 <template>
-  <h1 class="text-green-600 text-5xl font-mono bg-green-200 text-center">{{ users[route.params?.id].name }}</h1>
+  <h1 class="text-green-600 text-5xl font-mono bg-green-200 text-center">{{ users[route.params.id].name }}</h1>
 </template>
