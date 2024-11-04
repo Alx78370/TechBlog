@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 
-const users = [
+const authors = [
   { id: 1, name: 'John Doe', color: 'text-red-600' },
   { id: 2, name: 'Jane Doe', color: 'text-blue-600' },
   { id: 3, name: 'Alice', color: 'text-green-600' },
@@ -17,6 +17,6 @@ const route = useRoute()
 </script>
 
 <template>
-  <h1  class="text-yellow-600 text-5xl font-mono bg-yellow-200 text-center">{{ users[route.params.id].name }}</h1>
+  <h1  class="text-yellow-600 text-5xl font-mono bg-yellow-200 text-center">{{ authors[route.params.id].name }}</h1>
   <RouterLink class="text-xl hover:underline" to="/user">< Back</RouterLink>
 </template>

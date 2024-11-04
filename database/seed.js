@@ -1,6 +1,7 @@
-import { faker } from "@faker-js/faker/locale/fr";
-import { createClient } from "@supabase/supabase-js";
 import  dotenv  from "dotenv";
+import { createClient } from "@supabase/supabase-js";
+import { faker } from "@faker-js/faker/locale/fr";
+
 
 dotenv.config();
 

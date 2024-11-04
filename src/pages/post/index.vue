@@ -1,8 +1,0 @@
-<script setup lang="ts">
-</script>
-
-<template>
-  <div>
-    <h1>Post</h1>
-    <
-  </div>

@@ -1,5 +1,5 @@
 <script setup="ts">
-const users = [
+const Authors = [
   { id: 1, name: 'John Doe', color: 'text-red-600' },
   { id: 2, name: 'Jane Doe', color: 'text-blue-600' },
   { id: 3, name: 'Alice', color: 'text-green-600' },
@@ -15,10 +15,10 @@ const users = [
 
 <template>
   <div>
-    <h1 class="text-green-600 text-5xl font-mono bg-green-200 text-center">Users</h1>
+    <h1 class="text-green-600 text-5xl font-mono bg-green-200 text-center">Authors</h1>
     <ul>
-      <li v-for="user in users" :key="user">
-        <RouterLink :to="`/user/${user.id}?color=${user.color}`" :class="`${user.color}`">{{ user.name }}</RouterLink>
+      <li v-for="Author in Authors" :key="user">
+        <RouterLink :to="`/author/${Author.id}?color=${Author.color}`" :class="`${Author.color}`">{{ Author.name }}</RouterLink>
       </li>
     </ul>
   </div>
