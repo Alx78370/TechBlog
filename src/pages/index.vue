@@ -50,13 +50,13 @@ function navigateToPost(id: number) {
       <CarouselNext />
     </Carousel>
 
-    <h2 class="text-cyan-500 dark:text-cyan-200 text-3xl font-mono text-center mt-20 mb-5">Authors</h2>
+    <!-- <h2 class="text-cyan-500 dark:text-cyan-200 text-3xl font-mono text-center mt-20 mb-5">Authors</h2>
     <div class="grid grid-cols-3 gap-10">
       <div v-for="author in authors" :key="author.id" class="group cursor-pointer">
         <img class="rounded border-2 border-grey-500 dark:border-grey-200 group-hover:border-cyan-500 dark:group-hover:border-cyan-200" :src="author.image" :alt="author.name">
         <p class="text-center text-black dark:text-white font-mono font-bold truncate group-hover:text-cyan-500 dark:group-hover:text-cyan-200">{{ author.name }}</p>
       </div>
-    </div>
+    </div> -->
   </main>
 
 
