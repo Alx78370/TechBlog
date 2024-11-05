@@ -5,7 +5,6 @@ import { useFetchPosts } from '@/composables/useFetchPosts';
 const router = useRouter()
 
 const { posts, error } = useFetchPosts()
-
 function navigateToPost(id: number) {
   router.push(`/posts/${id}`)
 }
@@ -14,11 +13,12 @@ function navigateToPost(id: number) {
 
 <template>
   <div>
-    <h1 class="text-amber-600 text-5xl font-mono bg-amber-200 text-center">Posts</h1>
+    <h1 class="text-cyan-200 text-5xl font-mono text-center">Posts</h1>
     <ul>
-      <li class="hover:underline text-blue-400 cursor-pointer" v-for="post in posts" :key="post.id" @click="navigateToPost(post.id)">
+      <li v-if="posts" class="hover:underline text-blue-400 cursor-pointer" v-for="post in posts" :key="post.id" @click="navigateToPost(post.id)">
         {{ post.title }}
       </li>
+      <p v-else> {{ error }}</p>
     </ul>
   </div>
 </template>

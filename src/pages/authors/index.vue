@@ -15,7 +15,7 @@ const Authors = [
 
 <template>
   <div>
-    <h1 class="text-green-600 text-5xl font-mono bg-green-200 text-center">Authors</h1>
+    <h1 class="text-cyan-200 text-5xl font-mono text-center">Authors</h1>
     <ul>
       <li v-for="Author in Authors" :key="user">
         <RouterLink :to="`/author/${Author.id}?color=${Author.color}`" :class="`${Author.color}`">{{ Author.name }}</RouterLink>

@@ -1,6 +1,7 @@
 import  dotenv  from "dotenv";
 import { createClient } from "@supabase/supabase-js";
 import { faker } from "@faker-js/faker/locale/fr";
+import { format } from "path";
 
 
 dotenv.config();
@@ -48,6 +49,14 @@ async function cleanTables() {
   }
 }
 
+function generatePostTitle() {
+  const adjectives = ['Amazing', 'Incredible', 'Ultimate', 'Essential', 'Practical'];
+  const topics = ['Vue.js', 'JavaScript', 'Web Development', 'Frontend Frameworks', 'CSS Tricks'];
+  const formats = ['Guide', 'Tutorial', 'Tips', 'Introduction', 'Best Practices'];
+
+  return `${faker.helpers.arrayElement(adjectives)} ${faker.helpers.arrayElement(topics)} ${faker.helpers.arrayElement(formats)}`;
+}
+
 async function seed() {
 
   await cleanTables();
@@ -55,6 +64,7 @@ async function seed() {
   const authors = Array.from ({ length: AUTHOR_COUNT}, () => ({
     name: faker.person.fullName(),
     email: faker.internet.email(),
+    image: faker.image.avatar(),
   }));
 
   const { data: authorsData, error: authorsError } = await supabase
@@ -69,8 +79,12 @@ async function seed() {
 
   const posts = authorsData.flatMap(author =>
     Array.from({ length: POST_PER_AUTHOR }, () => ({
-      title: faker.lorem.sentence(),
+      title: generatePostTitle(),
       content: faker.lorem.paragraphs(),
+      image: faker.image.urlPicsumPhotos(
+        { width: 300 },
+        { height: 200 }
+      ),
       author_id: author.id,
       created_at: faker.date
         .between({

@@ -9,6 +9,6 @@ const { post, error } = useFetchPostById(postId)
 
 <template>
   <div>
-    <h1 class="text-amber-600 text-5xl font-mono bg-amber-200 text-center">{{ post?.title }}</h1>
+    <h1 class="text-cyan-200 text-5xl font-mono text-center">{{ post?.title }}</h1>
   </div>
 </template>
