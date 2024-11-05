@@ -18,7 +18,7 @@ if (!supabaseUrl || !supabaseServiceRoleKey) {
 
 const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
-const AUTHOR_COUNT = 5;
+const AUTHOR_COUNT = 6;
 const POST_PER_AUTHOR = 10;
 
 async function cleanTables() {
@@ -50,11 +50,11 @@ async function cleanTables() {
 }
 
 function generatePostTitle() {
-  const adjectives = ['Amazing', 'Incredible', 'Ultimate', 'Essential', 'Practical'];
-  const topics = ['Vue.js', 'JavaScript', 'Web Development', 'Frontend Frameworks', 'CSS Tricks'];
-  const formats = ['Guide', 'Tutorial', 'Tips', 'Introduction', 'Best Practices'];
+  const adjectives = ['Ultimate', 'Essential', 'Practical', 'Creative', 'Innovative'];
+  const topics = ['Guide', 'Insights', 'Secrets', 'Exploration', 'Journey'];
+  const themes = ['Cinema', 'Technology', 'Art', 'Culture', 'Lifestyle', 'Science', 'History'];
 
-  return `${faker.helpers.arrayElement(adjectives)} ${faker.helpers.arrayElement(topics)} ${faker.helpers.arrayElement(formats)}`;
+  return `${faker.helpers.arrayElement(adjectives)} ${faker.helpers.arrayElement(themes)} ${faker.helpers.arrayElement(topics)}`;
 }
 
 async function seed() {
@@ -64,7 +64,7 @@ async function seed() {
   const authors = Array.from ({ length: AUTHOR_COUNT}, () => ({
     name: faker.person.fullName(),
     email: faker.internet.email(),
-    image: faker.image.avatar(),
+    image: faker.image.urlLoremFlickr({ category: 'people', width: 500, height: 300 }),
   }));
 
   const { data: authorsData, error: authorsError } = await supabase
@@ -81,10 +81,7 @@ async function seed() {
     Array.from({ length: POST_PER_AUTHOR }, () => ({
       title: generatePostTitle(),
       content: faker.lorem.paragraphs(),
-      image: faker.image.urlPicsumPhotos(
-        { width: 300 },
-        { height: 200 }
-      ),
+      image: faker.image.urlPicsumPhotos({width: 1600, height:700, grayscale: false, blur: 0 }),
       author_id: author.id,
       created_at: faker.date
         .between({
