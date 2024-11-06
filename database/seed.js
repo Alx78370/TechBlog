@@ -18,8 +18,7 @@ if (!supabaseUrl || !supabaseServiceRoleKey) {
 
 const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
-const AUTHOR_COUNT = 6;
-const POST_PER_AUTHOR = 10;
+const POST_NB = 60;
 
 async function cleanTables() {
   try {
@@ -31,16 +30,6 @@ async function cleanTables() {
 
     if (postsDeleteError)
       throw new Error(`Erreur suppression posts: ${postsDeleteError.message}`)
-
-    const { error: authorsDeleteError } = await supabase
-      .from('authors')
-      .delete()
-      .not('id', 'is', null)
-
-    if (authorsDeleteError)
-      throw new Error(
-        `Erreur suppression authors: ${authorsDeleteError.message}`,
-      )
 
     console.log('✓ Tables nettoyées')
   } catch (error) {
@@ -61,45 +50,29 @@ async function seed() {
 
   await cleanTables();
 
-  const authors = Array.from ({ length: AUTHOR_COUNT}, () => ({
-    name: faker.person.fullName(),
-    email: faker.internet.email(),
-    image: faker.image.urlLoremFlickr({ category: 'people', width: 500, height: 300 }),
-  }));
-
-  const { data: authorsData, error: authorsError } = await supabase
-    .from("authors")
-    .insert(authors)
-    .select()
-
-  if (authorsError) {
-    console.error("Erreur pendant l'insertion des auteurs:", authorsError);
-    return;
-  }
-
-  const posts = authorsData.flatMap(author =>
-    Array.from({ length: POST_PER_AUTHOR }, () => ({
+  const posts = Array.from({ length: POST_NB }, () => ({
       title: generatePostTitle(),
       content: faker.lorem.paragraphs({ min: 5, max: 10 }),
       image: faker.image.urlPicsumPhotos({width: 1600, height:700, grayscale: false, blur: 0 }),
-      author_id: author.id,
       created_at: faker.date
         .between({
           from: '2023-01-01T00:00:00.000Z',
           to: new Date(),
         })
         .toISOString(),
-    }))
-  )
+    }));
 
-  const { error: postsError } = await supabase.from('posts').insert(posts)
+  const { data: postsData, error: postsError } = await supabase
+    .from("posts")
+    .insert(posts)
+    .select()
 
   if (postsError) {
     console.error("Erreur pendant l'insertion des posts:", postsError);
     return;
   }
 
-  console.log(authors, posts);
+  console.log(posts);
 
 };
 

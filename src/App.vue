@@ -5,7 +5,7 @@ import DarkMode from './features/DarkMode.vue';
 </script>
 
 <template>
-  <nav class="p-4 mb-10 flex justify-between items-center border-b-2 border-slate-500 font-mono font-bold text-xl text-black dark:text-white">
+  <nav class="p-4 flex justify-between items-center border-b-2 border-slate-500 font-mono font-bold text-xl text-black dark:text-white">
     <ul class="flex">
       <li>
         <RouterLink to="/" class="hover:underline hover:text-cyan-200">Home</RouterLink>
