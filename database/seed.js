@@ -80,7 +80,7 @@ async function seed() {
   const posts = authorsData.flatMap(author =>
     Array.from({ length: POST_PER_AUTHOR }, () => ({
       title: generatePostTitle(),
-      content: faker.lorem.paragraphs(),
+      content: faker.lorem.paragraphs({ min: 5, max: 10 }),
       image: faker.image.urlPicsumPhotos({width: 1600, height:700, grayscale: false, blur: 0 }),
       author_id: author.id,
       created_at: faker.date
