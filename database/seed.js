@@ -50,9 +50,12 @@ async function seed() {
 
   await cleanTables();
 
-  const posts = Array.from({ length: POST_NB }, () => ({
+  const posts = Array.from({ length: POST_NB }, () => {
+    const rawContent = faker.lorem.paragraphs(20, '\n')
+    const content = rawContent.replace(/\n/g, '<br><br>')
+    return {
       title: generatePostTitle(),
-      content: faker.lorem.paragraphs({ min: 5, max: 10 }),
+      content,
       image: faker.image.urlPicsumPhotos({width: 1600, height:700, grayscale: false, blur: 0 }),
       created_at: faker.date
         .between({
@@ -60,7 +63,7 @@ async function seed() {
           to: new Date(),
         })
         .toISOString(),
-    }));
+    }});
 
   const { data: postsData, error: postsError } = await supabase
     .from("posts")

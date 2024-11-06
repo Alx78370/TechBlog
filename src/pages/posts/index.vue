@@ -2,7 +2,7 @@
 import { useRoute, useRouter } from 'vue-router';
 import { useFetchPostsByPage } from '@/composables/useFetchPostsByPage';
 import { useFetchPosts } from '@/composables/useFetchPosts';
-import { format } from 'date-fns';
+import { formatDate } from '@/utils/dateUtils';
 import { Button } from '@/components/ui/button'
 import { computed, onMounted, ref, watch } from 'vue';
 
@@ -27,12 +27,8 @@ function navigateToPost(id: number) {
   router.push(`/posts/${id}`)
 }
 
-function formatDate(dateString: string) {
-  return format(new Date(dateString), "MMMM d, yyyy h:mm a");
-}
-
 function truncatedContent(content: string) {
-  return content.split('\n')[0];
+  return content.split('<br><br>')[0];
 }
 
 function changePage(page: number) {
@@ -76,7 +72,7 @@ onMounted(() => {
 
 <template>
 
-  <main class="mt-10 lg:mx-32 md:mx-22 sm:mx-10">
+  <div class="mt-10 lg:mx-32 md:mx-22 sm:mx-10">
 
     <Pagination v-slot="{ page }" :total="totalPages + 100" :sibling-count="1" show-edges :default-page="1">
     <PaginationList v-slot="{ items }" class="flex items-center justify-center gap-1 mb-5">
@@ -110,7 +106,7 @@ onMounted(() => {
           <h1 class="group-hover:text-yellow-700 dark:group-hover:text-yellow-500 font-bold text-xl text-center">{{ pagePost.title }}</h1>
           <p class="dark:text-slate-500 text-sm">{{ formatDate(pagePost.created_at) }}</p>
         </div>
-        <p class="text-gray-950 dark:text-white group-hover:text-yellow-500 dark:group-hover:text-yellow-200 text-justify">{{ truncatedContent(pagePost.content) }}..</p>
+        <p v-html="truncatedContent(pagePost.content) + '..'" class="text-gray-950 dark:text-white group-hover:text-yellow-500 dark:group-hover:text-yellow-200 text-justify"></p>
       </div>
       <p v-else> {{ error }}</p>
     </article>
@@ -136,6 +132,6 @@ onMounted(() => {
       </PaginationList>
     </Pagination>
 
-  </main>
+  </div>
 
 </template>

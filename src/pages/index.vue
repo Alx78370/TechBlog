@@ -25,7 +25,9 @@ function navigateToPost(id: number) {
 </script>
 
 <template>
-  <main class="mx-14 mt-10 md:20 ">
+  
+  <div class="mx-14 mt-10 md:20 ">
+
     <h1 class="text-cyan-500 dark:text-cyan-200 text-5xl font-mono text-center mb-20">A blog like no others...</h1>
     <h2 class="text-cyan-500 dark:text-cyan-200 text-3xl font-mono text-center">Last articles</h2>
     <Carousel
@@ -49,6 +51,6 @@ function navigateToPost(id: number) {
       <CarouselNext />
     </Carousel>
 
-  </main>
+  </div>
 
 </template>

@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 const animate = require("tailwindcss-animate");
+const { addIconSelectors } = require('@iconify/tailwind');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -96,6 +97,7 @@ module.exports = {
     },
   },
   plugins: [
+    addIconSelectors(['mdi', 'mdi-light']),
     animate,
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
