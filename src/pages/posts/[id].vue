@@ -16,10 +16,7 @@ const { post, error } = useFetchPostById(postId)
   </div>
 
     <article class="mx-10 sm:mx-22 lg:mx-32 mt-5 mb-10">
-      <div class="flex justify-between">
-        <RouterLink to="/posts"><span class="icon-[mdi-light--arrow-left]"></span></RouterLink>
-        <p class="dark:text-slate-500 text-sm mb-5 font-mono font-bold">{{ formatDate(post?.created_at) }}</p>
-      </div>
+        <p class="dark:text-slate-500 text-lg mb-5 font-mono font-bold">{{ formatDate(post?.created_at) }}</p>
       <p v-html="post?.content" class="text-cyan-500 dark:text-white text-xl font-mono text-justify"></p>
     </article>
 
