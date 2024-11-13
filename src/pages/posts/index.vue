@@ -28,6 +28,7 @@ const totalPages = computed(() => {
 })
 
 watchEffect(() => {
+  console.log('posts lenght:', posts.value.length)
   console.log('totalPages:', totalPages.value)
 })
 
@@ -78,11 +79,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <section>
+  <section v-if="posts.length > 0">
     <div class="md:mx-22 mx-5 mt-10 lg:mx-32">
       <Pagination
         v-slot="{ page }"
-        :total="totalPages"
+        :total="totalPages * 10"
         :sibling-count="1"
         show-edges
         :default-page="1"
@@ -151,7 +152,7 @@ onMounted(() => {
 
       <Pagination
         v-slot="{ page }"
-        :total="totalPages + 100"
+        :total="totalPages * 10"
         :sibling-count="1"
         show-edges
         :default-page="1"
@@ -186,4 +187,5 @@ onMounted(() => {
       </Pagination>
     </div>
   </section>
+  <p v-else>{{ error }}</p>
 </template>
