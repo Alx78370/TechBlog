@@ -1,24 +1,23 @@
-import  dotenv  from "dotenv";
-import { createClient } from "@supabase/supabase-js";
-import { faker } from "@faker-js/faker/locale/fr";
-import { format } from "path";
+import dotenv from 'dotenv'
+import { createClient } from '@supabase/supabase-js'
+import { faker } from '@faker-js/faker/locale/fr'
+import { format } from 'path'
 
+dotenv.config()
 
-dotenv.config();
-
-
-const supabaseUrl = process.env.VITE_SUPABASE_URL;
-const supabaseServiceRoleKey = process.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
-
+const supabaseUrl = process.env.VITE_SUPABASE_URL
+const supabaseServiceRoleKey = process.env.VITE_SUPABASE_SERVICE_ROLE_KEY
 
 if (!supabaseUrl || !supabaseServiceRoleKey) {
-  console.error("Please provide SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env file");
-  process.exit(1);
+  console.error(
+    'Please provide SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env file',
+  )
+  process.exit(1)
 }
 
-const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+const supabase = createClient(supabaseUrl, supabaseServiceRoleKey)
 
-const POST_NB = 60;
+const POST_NB = 60
 
 async function cleanTables() {
   try {
@@ -39,16 +38,29 @@ async function cleanTables() {
 }
 
 function generatePostTitle() {
-  const adjectives = ['Ultimate', 'Essential', 'Practical', 'Creative', 'Innovative'];
-  const topics = ['Guide', 'Insights', 'Secrets', 'Exploration', 'Journey'];
-  const themes = ['Cinema', 'Technology', 'Art', 'Culture', 'Lifestyle', 'Science', 'History'];
+  const adjectives = [
+    'Ultimate',
+    'Essential',
+    'Practical',
+    'Creative',
+    'Innovative',
+  ]
+  const topics = ['Guide', 'Insights', 'Secrets', 'Exploration', 'Journey']
+  const themes = [
+    'Cinema',
+    'Technology',
+    'Art',
+    'Culture',
+    'Lifestyle',
+    'Science',
+    'History',
+  ]
 
-  return `${faker.helpers.arrayElement(adjectives)} ${faker.helpers.arrayElement(themes)} ${faker.helpers.arrayElement(topics)}`;
+  return `${faker.helpers.arrayElement(adjectives)} ${faker.helpers.arrayElement(themes)} ${faker.helpers.arrayElement(topics)}`
 }
 
 async function seed() {
-
-  await cleanTables();
+  await cleanTables()
 
   const posts = Array.from({ length: POST_NB }, () => {
     const rawContent = faker.lorem.paragraphs(20, '\n')
@@ -56,27 +68,32 @@ async function seed() {
     return {
       title: generatePostTitle(),
       content,
-      image: faker.image.urlPicsumPhotos({width: 1600, height:700, grayscale: false, blur: 0 }),
+      image: faker.image.urlPicsumPhotos({
+        width: 1792,
+        height: 1024,
+        grayscale: false,
+        blur: 0,
+      }),
       created_at: faker.date
         .between({
           from: '2023-01-01T00:00:00.000Z',
           to: new Date(),
         })
         .toISOString(),
-    }});
+    }
+  })
 
   const { data: postsData, error: postsError } = await supabase
-    .from("posts")
+    .from('posts')
     .insert(posts)
     .select()
 
   if (postsError) {
-    console.error("Erreur pendant l'insertion des posts:", postsError);
-    return;
+    console.error("Erreur pendant l'insertion des posts:", postsError)
+    return
   }
 
-  console.log(posts);
+  console.log(posts)
+}
 
-};
-
-seed();
+seed()

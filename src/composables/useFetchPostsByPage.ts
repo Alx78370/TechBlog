@@ -1,12 +1,11 @@
-import { onMounted, ref } from "vue"
+import { onMounted, ref } from 'vue'
 import { supabase } from '@/lib/supabaseClient'
-import type { Post } from "@/types/Post"
+import type { Post } from '@/types/Post'
 
 export function useFetchPostsByPage() {
-
-  const pagePosts = ref<Post[]>([]);
-  const error = ref<string | null>(null);
-  const nbPostsPerPage = 5;
+  const pagePosts = ref<Post[]>([])
+  const error = ref<string | null>(null)
+  const nbPostsPerPage = 5
 
   async function getPostsByPage(page: number = 1) {
     try {
@@ -23,9 +22,8 @@ export function useFetchPostsByPage() {
         error.value = fetchError.message
         return console.error(fetchError)
       }
-      pagePosts.value = data || [];
-    }
-    catch (error: any) {
+      pagePosts.value = data || []
+    } catch (error: any) {
       console.error('Error fetching posts:', error.message)
     }
   }
@@ -34,5 +32,5 @@ export function useFetchPostsByPage() {
     getPostsByPage()
   })
 
-  return { pagePosts, error, getPostsByPage };
+  return { pagePosts, error, getPostsByPage }
 }

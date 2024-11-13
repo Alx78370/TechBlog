@@ -1,38 +1,66 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { createClient } from '@supabase/supabase-js';
-import DarkMode from './features/DarkMode.vue';
+import { createClient } from '@supabase/supabase-js'
+import DarkMode from './features/DarkMode.vue'
 </script>
 
 <template>
-  <div class="flex flex-col h-screen justify-between">
+  <div class="flex h-screen flex-col justify-between">
     <header>
-    <nav class="p-4 flex justify-between items-center border-b-2 border-slate-500 font-mono font-bold text-xl text-black dark:text-white">
-      <ul class="flex">
-        <li>
-          <RouterLink to="/" class="hover:underline hover:text-cyan-200">Home</RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/about" class="hover:underline hover:text-cyan-200 ml-12 word-spacing-tight">About me</RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/posts" class="hover:underline hover:text-cyan-200 ml-12">Posts</RouterLink>
-        </li>
-      </ul>
-      <DarkMode />
-    </nav>
-  </header>
+      <nav
+        class="flex items-center justify-between border-b-2 border-slate-500 p-4 font-mono text-xl font-bold text-black dark:text-white"
+      >
+        <ul class="flex">
+          <li>
+            <RouterLink to="/" class="hover:text-cyan-200 hover:underline"
+              >Home</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink
+              to="/about"
+              class="word-spacing-tight ml-12 hover:text-cyan-200 hover:underline"
+              >About me</RouterLink
+            >
+          </li>
+          <li>
+            <RouterLink
+              to="/posts"
+              class="ml-12 hover:text-cyan-200 hover:underline"
+              >Posts</RouterLink
+            >
+          </li>
+        </ul>
+        <DarkMode />
+      </nav>
+    </header>
 
-  <main class="mb-auto">
-    <RouterView />
-  </main>
+    <main class="mb-auto">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </main>
 
-  <footer>
-    <div class="h-16 border-t-2 text-slate-300 border-slate-500 font-mono flex items-center justify-center">
-      <p>© Alexis Vachet 2024 - All rights reserved</p>
-    </div>
-  </footer>
+    <footer>
+      <div
+        class="flex h-16 items-center justify-center border-t-2 border-slate-500 font-mono text-slate-300"
+      >
+        <p>© Alexis Vachet 2024 - All rights reserved</p>
+      </div>
+    </footer>
   </div>
-
 </template>
 
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

@@ -1,15 +1,13 @@
-import { onMounted, ref, watch } from "vue"
+import { onMounted, ref, watch } from 'vue'
 import { supabase } from '@/lib/supabaseClient'
-import type { Post } from "@/types/Post"
+import type { Post } from '@/types/Post'
 
 export function useFetchPosts() {
-
-  const posts = ref<Post[]>([]);
-  const error = ref<string | null>(null);
+  const posts = ref<Post[]>([])
+  const error = ref<string | null>(null)
 
   async function getPosts() {
     try {
-
       const { data, error: fetchError } = await supabase
         .from('posts')
         .select('*')
@@ -19,9 +17,8 @@ export function useFetchPosts() {
         error.value = fetchError.message
         return console.error(fetchError)
       }
-      posts.value = data || [];
-    }
-    catch (error: any) {
+      posts.value = data || []
+    } catch (error: any) {
       console.error('Error fetching posts:', error.message)
     }
   }
@@ -30,5 +27,5 @@ export function useFetchPosts() {
     getPosts()
   })
 
-  return { posts, error };
+  return { posts, error }
 }

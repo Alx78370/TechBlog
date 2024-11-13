@@ -1,9 +1,8 @@
-import { onMounted, ref } from "vue"
+import { onMounted, ref } from 'vue'
 import { supabase } from '@/lib/supabaseClient'
-import type { Post } from "@/types/Post"
+import type { Post } from '@/types/Post'
 
 export function useFetchRecentPosts() {
-
   const recentPosts = ref<Post[]>([])
   const error = ref<string | null>(null)
 
@@ -18,9 +17,8 @@ export function useFetchRecentPosts() {
         error.value = fetchError.message
         return console.error(fetchError)
       }
-      recentPosts.value = data || [];
-    }
-    catch (error: any) {
+      recentPosts.value = data || []
+    } catch (error: any) {
       console.error('Error fetching posts:', error.message)
     }
   }
@@ -29,5 +27,5 @@ export function useFetchRecentPosts() {
     getRecentPosts()
   })
 
-  return { recentPosts, error };
+  return { recentPosts, error }
 }
