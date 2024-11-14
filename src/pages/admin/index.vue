@@ -111,7 +111,5 @@ const submitHandler = async (formData: Post) => {
         </div>
       </div>
     </div>
-
-    <button @click="logout()">logout</button>
   </section>
 </template>

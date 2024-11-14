@@ -24,12 +24,14 @@ const { post, error } = useFetchPostById(postId)
     </div>
 
     <article class="sm:mx-22 mx-10 mb-10 mt-5 lg:mx-32">
-      <p class="mb-5 font-mono text-lg font-bold dark:text-slate-500">
+      <p
+        class="text-md mb-5 font-mono font-bold text-cyan-800 dark:text-cyan-200"
+      >
         {{ formatDate(post?.created_at) }}
       </p>
       <p
         v-html="post?.content"
-        class="whitespace-pre-wrap text-justify font-mono text-xl text-cyan-500 dark:text-white"
+        class="whitespace-pre-wrap text-justify font-mono text-xl text-slate-900 dark:text-white"
       ></p>
     </article>
   </section>

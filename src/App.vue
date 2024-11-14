@@ -2,6 +2,10 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { createClient } from '@supabase/supabase-js'
 import DarkMode from './features/DarkMode.vue'
+import { useAuth } from './composables/useAuth'
+
+const { logout, supaBaseData, token } = useAuth()
+console.log('token:', token)
 </script>
 
 <template>
@@ -33,7 +37,15 @@ import DarkMode from './features/DarkMode.vue'
             >
           </li>
         </ul>
-        <DarkMode />
+        <div class="flex items-center gap-5">
+          <p
+            class="text-slate-900 hover:text-cyan-800 hover:underline dark:text-white dark:hover:text-cyan-200"
+            @click="logout()"
+          >
+            logout
+          </p>
+          <DarkMode />
+        </div>
       </nav>
     </header>
 
@@ -47,7 +59,7 @@ import DarkMode from './features/DarkMode.vue'
 
     <footer>
       <div
-        class="flex h-16 items-center justify-center border-t-2 border-slate-500 font-mono text-slate-300"
+        class="flex h-16 items-center justify-center border-t-2 border-slate-500 font-mono text-slate-700 dark:text-slate-300"
       >
         <p>© Alexis Vachet 2024 - All rights reserved</p>
       </div>

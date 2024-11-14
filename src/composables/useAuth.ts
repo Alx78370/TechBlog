@@ -39,5 +39,5 @@ export function useAuth() {
     },
     { deep: true },
   )
-  return { login, supaBaseData, logout }
+  return { login, supaBaseData, token, logout }
 }

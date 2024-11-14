@@ -125,7 +125,7 @@ onMounted(() => {
         @click="navigateToPost(pagePost.id)"
       >
         <div
-          class="mb-10 flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-500 p-2 font-mono text-cyan-500 group-hover:bg-slate-100 dark:text-cyan-200 dark:group-hover:bg-slate-900 md:mx-10 lg:mx-32"
+          class="mb-10 flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-slate-500 p-2 font-mono text-cyan-800 group-hover:bg-slate-100 dark:text-cyan-200 dark:group-hover:bg-slate-900 md:mx-10 lg:mx-32"
           v-if="posts"
         >
           <img class="rounded-lg" :src="pagePost.image" :alt="pagePost.title" />
@@ -137,13 +137,13 @@ onMounted(() => {
             >
               {{ pagePost.title }}
             </h1>
-            <p class="text-end text-sm dark:text-slate-500">
+            <p
+              class="text-end text-sm text-cyan-800 group-hover:text-yellow-700 dark:text-cyan-200 dark:group-hover:text-yellow-500"
+            >
               {{ formatDate(pagePost.created_at) }}
             </p>
           </div>
-          <p
-            class="line-clamp-2 text-justify text-gray-950 group-hover:text-yellow-500 dark:text-white dark:group-hover:text-yellow-200"
-          >
+          <p class="line-clamp-2 text-justify text-gray-950 dark:text-white">
             {{ pagePost.content }}
           </p>
         </div>

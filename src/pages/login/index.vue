@@ -23,7 +23,11 @@ const handleIconClick = (node: any, e: Event) => {
 
 <template>
   <div class="flex h-screenNav flex-col items-center justify-center font-mono">
-    <h1 class="mb-10 text-4xl font-bold">Admin</h1>
+    <h1
+      class="mb-10 text-center font-mono text-5xl text-cyan-800 dark:text-cyan-200"
+    >
+      Admin
+    </h1>
     <div class="border-grey-200 w-4/5 rounded-lg border-2 p-10 lg:w-1/3">
       <FormKit
         type="form"

@@ -24,11 +24,11 @@ function navigateToPost(id: number) {
 <template>
   <div class="md:20 mx-14 mt-10">
     <h1
-      class="mb-20 text-center font-mono text-5xl text-cyan-500 dark:text-cyan-200"
+      class="mb-20 text-center font-mono text-5xl text-cyan-800 dark:text-cyan-200"
     >
       A blog like no others...
     </h1>
-    <h2 class="text-center font-mono text-3xl text-cyan-500 dark:text-cyan-200">
+    <h2 class="text-center font-mono text-3xl text-cyan-800 dark:text-cyan-200">
       Last articles
     </h2>
     <Carousel
@@ -52,13 +52,13 @@ function navigateToPost(id: number) {
               class="flex-column group cursor-pointer items-center justify-center p-4"
             >
               <img
-                class="border-grey-500 dark:border-grey-200 rounded border-2 group-hover:border-cyan-500 dark:group-hover:border-cyan-200"
+                class="border-grey-500 dark:border-grey-200 rounded border-2 group-hover:border-cyan-800 dark:group-hover:border-cyan-200"
                 :src="recentPost.image"
                 :alt="recentPost.title"
                 @click="navigateToPost(recentPost.id)"
               />
               <h3
-                class="truncate text-center font-mono font-bold text-black group-hover:text-cyan-500 dark:text-white dark:group-hover:text-cyan-200"
+                class="truncate text-center font-mono font-bold text-black group-hover:text-cyan-800 dark:text-white dark:group-hover:text-cyan-200"
               >
                 {{ recentPost.title }}
               </h3>
