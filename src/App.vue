@@ -12,21 +12,23 @@ import DarkMode from './features/DarkMode.vue'
       >
         <ul class="flex">
           <li>
-            <RouterLink to="/" class="hover:text-cyan-200 hover:underline"
+            <RouterLink
+              to="/"
+              class="hover:text-cyan-800 hover:underline dark:hover:text-cyan-200"
               >Home</RouterLink
             >
           </li>
           <li>
             <RouterLink
               to="/about"
-              class="word-spacing-tight ml-12 hover:text-cyan-200 hover:underline"
+              class="word-spacing-tight ml-12 hover:text-cyan-800 hover:underline dark:hover:text-cyan-200"
               >About me</RouterLink
             >
           </li>
           <li>
             <RouterLink
               to="/posts"
-              class="ml-12 hover:text-cyan-200 hover:underline"
+              class="ml-12 hover:text-cyan-800 hover:underline dark:hover:text-cyan-200"
               >Posts</RouterLink
             >
           </li>
@@ -54,6 +56,9 @@ import DarkMode from './features/DarkMode.vue'
 </template>
 
 <style scoped>
+template {
+  background-color: azure;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
